@@ -1,140 +1,119 @@
-let audio = new Audio();
-let currentAlbum = null;
-let currentIndex = 0;
+let data;
 
-const album = {
-  title: "Manah Kalah",
-  cover: "assets/manah-kalah.jpg",
-  credit: "Written, Sequenced & Produced by Aayushman Parmar",
-  tracks: [
-    { title: "Song 1", file: "music/track1.mp3" },
-    { title: "Song 2", file: "music/track2.mp3" },
-    { title: "Song 3", file: "music/track3.mp3" },
-    { title: "Song 4", file: "music/track4.mp3" },
-    { title: "Song 5", file: "music/track5.mp3" },
-    { title: "Song 6", file: "music/track6.mp3" },
-    { title: "Song 7", file: "music/track7.mp3" },
-    { title: "Song 8", file: "music/track8.mp3" }
-  ]
-};
-
-function showHome() {
-  setActive("home");
-}
-
-function showBlog() {
-  setActive("blog");
-}
-
-function setActive(id) {
-  document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-
-function renderSongs() {
-  const grid = document.getElementById("songGrid");
-  grid.innerHTML = "";
-
-  album.tracks.forEach((track, index) => {
-    const card = document.createElement("div");
-    card.className = "song-card";
-    card.innerText = track.title;
-    card.onclick = () => {
-      currentAlbum = album;
-      playTrack(index);
-    };
-    grid.appendChild(card);
+fetch("assets/data.json")
+  .then(res => res.json())
+  .then(json => {
+    data = json;
+    renderHome();
   });
-}
 
-function renderAlbum() {
-  const section = document.getElementById("albumSection");
-  section.innerHTML = `
-    <div class="album-card" onclick="openAlbum()">
-      <img src="${album.cover}">
-      <p>${album.title}</p>
+function renderHome() {
+  const app = document.getElementById("app");
+
+  app.innerHTML = `
+    <div class="container">
+      <div class="nav">
+        <span onclick="renderHome()">Home</span>
+        <span onclick="renderBlog()">Blog</span>
+      </div>
+
+      <div class="artist-header">
+        <img src="assets/${data.artist.photo}" />
+        <div>
+          <h1>${data.artist.name}</h1>
+          <p>${data.artist.bio}</p>
+        </div>
+      </div>
+
+      <h2>Top Songs</h2>
+      <div class="songs-scroll">
+        <div class="songs-grid">
+          ${data.topSongs.map(song => `
+            <div class="song-row">
+              <img src="assets/${song.cover}" />
+              <span>${song.title}</span>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
+      <h2>Albums</h2>
+      <div class="album-grid">
+        ${data.albums.map(album => `
+          <div class="album-item" onclick="renderAlbum('${album.id}')">
+            <img src="assets/${album.cover}" />
+            <p>${album.title}</p>
+          </div>
+        `).join("")}
+      </div>
+
+      <h2>EPs</h2>
+      <div class="album-grid">
+        ${data.eps.map(ep => `
+          <div class="album-item" onclick="renderAlbum('${ep.id}')">
+            <img src="assets/${ep.cover}" />
+            <p>${ep.title}</p>
+          </div>
+        `).join("")}
+      </div>
     </div>
   `;
 }
 
-function openAlbum() {
-  setActive("albumPage");
+function renderAlbum(id) {
+  const album =
+    data.albums.find(a => a.id === id) ||
+    data.eps.find(e => e.id === id);
 
-  const container = document.getElementById("albumContent");
-  container.innerHTML = `
-    <div style="padding:60px 40px;">
-      <h1>${album.title}</h1>
+  const app = document.getElementById("app");
+
+  app.innerHTML = `
+    <div class="container">
+      <div class="back-button" onclick="renderHome()">← Back</div>
+
+      <div class="album-header">
+        <img src="assets/${album.cover}" />
+        <div>
+          <h1>${album.title}</h1>
+          <p>${album.tracks.length} Tracks</p>
+        </div>
+      </div>
+
+      ${album.tracks.map((track, i) => `
+        <div class="track-row">${i + 1}. ${track}</div>
+      `).join("")}
     </div>
   `;
-
-  album.tracks.forEach((track, index) => {
-    const row = document.createElement("div");
-    row.className = "track-row";
-    row.innerHTML = `
-      <span>${index + 1}. ${track.title}</span>
-      <span>▶</span>
-    `;
-    row.onclick = () => {
-      currentAlbum = album;
-      playTrack(index);
-    };
-    container.appendChild(row);
-  });
-
-  const credit = document.createElement("div");
-  credit.className = "album-credit";
-  credit.innerText = album.credit;
-  container.appendChild(credit);
 }
 
-function playTrack(index) {
-  currentIndex = index;
-  audio.src = currentAlbum.tracks[index].file;
-  audio.play();
+function renderBlog() {
+  const app = document.getElementById("app");
 
-  document.getElementById("playerTitle").innerText =
-    currentAlbum.tracks[index].title;
+  app.innerHTML = `
+    <div class="container">
+      <div class="back-button" onclick="renderHome()">← Back</div>
 
-  document.getElementById("playerCover").src =
-    currentAlbum.cover;
+      <h1>Blog</h1>
 
-  document.getElementById("playBtn").innerText = "⏸";
+      ${data.blog.map(post => `
+        <div class="blog-preview" onclick="renderPost('${post.id}')">
+          <h3>${post.title}</h3>
+          <p>${post.excerpt}</p>
+        </div>
+      `).join("")}
+    </div>
+  `;
 }
 
-function togglePlay() {
-  if (audio.paused) {
-    audio.play();
-    document.getElementById("playBtn").innerText = "⏸";
-  } else {
-    audio.pause();
-    document.getElementById("playBtn").innerText = "▶";
-  }
+function renderPost(id) {
+  const post = data.blog.find(p => p.id === id);
+  const app = document.getElementById("app");
+
+  app.innerHTML = `
+    <div class="container">
+      <div class="back-button" onclick="renderBlog()">← Back</div>
+      <h1>${post.title}</h1>
+      <p>${post.content}</p>
+    </div>
+  `;
 }
-
-function nextTrack() {
-  currentIndex = (currentIndex + 1) % currentAlbum.tracks.length;
-  playTrack(currentIndex);
-}
-
-function prevTrack() {
-  currentIndex =
-    (currentIndex - 1 + currentAlbum.tracks.length) %
-    currentAlbum.tracks.length;
-  playTrack(currentIndex);
-}
-
-audio.addEventListener("timeupdate", () => {
-  const current = Math.floor(audio.currentTime);
-  const duration = Math.floor(audio.duration || 0);
-
-  const format = s => `${Math.floor(s / 60)}:${(s % 60)
-    .toString()
-    .padStart(2, "0")}`;
-
-  document.getElementById("time").innerText =
-    `${format(current)} / ${format(duration)}`;
-});
-
-renderSongs();
-renderAlbum();
-showHome();
