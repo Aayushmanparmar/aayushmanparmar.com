@@ -1,35 +1,32 @@
 {
   "artist": {
-    "name": "Aayushman Parmar",
-    "tagline": "Written, Sequenced & Produced by Aayushman Parmar",
-    "bio": "Aayushman Parmar is a conceptual independent artist whose music explores generational legacy, identity, spirituality, and the silent emotional architecture of Indian households. His debut album 'Manah Kalah' examines the evolving perspective of a son toward his family — moving from internalized pressure and emotional isolation toward reconciliation, empathy, and maturity."
+    "name": "Your Artist Name",
+    "bio": "Artist bio goes here.",
+    "photo": "manah-kalah.jpg"
   },
-  "catalogue": {
-    "albums": [
-      {
-        "id": "manah-kalah",
-        "title": "Manah Kalah",
-        "year": "2026",
-        "runtime": "1 hr 30 min",
-        "cover": "assets/manah-kalah.jpg",
-        "tracks": [
-          { "title": "Vinyl", "file": "track1.wav" },
-          { "title": "Manah", "file": "track2.wav" },
-          { "title": "Contemporaries", "file": "track3.wav" },
-          { "title": "Mortal", "file": "track4.wav" },
-          { "title": "Mother-Son", "file": "track5.wav" },
-          { "title": "Kalah", "file": "track6.wav" },
-          { "title": "Stars / Colours", "file": "track7.wav" },
-          { "title": "Take Me To Your Garden", "file": "track8.wav" },
-          { "title": "Generational Wealth", "file": "track9.wav" },
-          { "title": "Transform I", "file": "track10.wav" },
-          { "title": "Mirror", "file": "track11.wav" },
-          { "title": "I Promise, I'm Alive", "file": "track12.wav" },
-          { "title": "You're Never Over", "file": "track13.wav" }
-        ]
-      }
-    ],
-    "eps": [],
-    "singles": []
-  }
+
+  "topSongs": [
+    { "title": "Song 1", "cover": "manah-kalah.jpg" },
+    { "title": "Song 2", "cover": "manah-kalah.jpg" }
+  ],
+
+  "albums": [
+    {
+      "id": "1",
+      "title": "Album One",
+      "cover": "manah-kalah.jpg",
+      "tracks": ["Track A", "Track B", "Track C"]
+    }
+  ],
+
+  "eps": [],
+
+  "blog": [
+    {
+      "id": "1",
+      "title": "First Blog Post",
+      "excerpt": "Short preview text...",
+      "content": "Full blog post content here."
+    }
+  ]
 }
