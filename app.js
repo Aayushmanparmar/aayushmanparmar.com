@@ -75,9 +75,13 @@ function renderAlbum(id) {
         <img src="assets/${album.cover}" />
         <div>
           <h1>${album.title}</h1>
-          <p>${album.tracks.length} Tracks</p>
+          <p style="max-width: 700px; line-height: 1.6; margin-top: 15px;">
+            ${album.albumBio}
+          </p>
         </div>
       </div>
+
+      <h2>Tracklist</h2>
 
       ${album.tracks.map((track, i) => `
         <div class="track-row">${i + 1}. ${track}</div>
