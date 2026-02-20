@@ -7,54 +7,69 @@
 </head>
 <body>
 
-  <div class="sidebar">
-    <h2 class="logo">AAYUSHMAN</h2>
-    <nav>
-      <button onclick="showSection('home')">Home</button>
-      <button onclick="showSection('albums')">Albums</button>
-      <button onclick="showSection('eps')">EPs</button>
-      <button onclick="showSection('singles')">Singles</button>
-    </nav>
+<div class="sidebar">
+  <h2 class="logo">AAYUSHMAN</h2>
+  <button onclick="showSection('home')">Home</button>
+  <button onclick="showSection('albums')">Albums</button>
+  <button onclick="showSection('eps')">EPs</button>
+  <button onclick="showSection('singles')">Singles</button>
+</div>
+
+<div class="main">
+
+  <section id="home" class="section active">
+    <div class="hero">
+      <h1 id="artistName"></h1>
+      <p id="artistTagline"></p>
+    </div>
+
+    <div class="bio">
+      <h2>About</h2>
+      <p id="artistBio"></p>
+    </div>
+
+    <h2>Albums</h2>
+    <div id="albumGrid" class="grid"></div>
+  </section>
+
+  <section id="albums" class="section">
+    <div id="albumView"></div>
+  </section>
+
+  <section id="eps" class="section">
+    <h1>EPs</h1>
+    <p>Coming Soon</p>
+  </section>
+
+  <section id="singles" class="section">
+    <h1>Singles</h1>
+    <p>Coming Soon</p>
+  </section>
+
+</div>
+
+<!-- GLOBAL PLAYER -->
+<div class="player">
+  <div class="player-left">
+    <img id="playerCover" />
+    <div>
+      <div id="playerTitle">Select a track</div>
+      <div id="playerArtist">Aayushman Parmar</div>
+    </div>
   </div>
 
-  <div class="main">
-
-    <!-- ARTIST HOME -->
-    <section id="home" class="section active">
-      <div class="hero">
-        <h1 id="artistName"></h1>
-        <p id="artistTagline"></p>
-      </div>
-
-      <div class="bio">
-        <h2>About</h2>
-        <p id="artistBio"></p>
-      </div>
-
-      <div class="catalogue-preview">
-        <h2>Catalogue</h2>
-        <div id="albumPreview" class="grid"></div>
-      </div>
-    </section>
-
-    <!-- ALBUMS PAGE -->
-    <section id="albums" class="section">
-      <h1>Albums</h1>
-      <div id="albumsContainer"></div>
-    </section>
-
-    <section id="eps" class="section">
-      <h1>EPs</h1>
-      <p>Coming Soon</p>
-    </section>
-
-    <section id="singles" class="section">
-      <h1>Singles</h1>
-      <p>Coming Soon</p>
-    </section>
-
+  <div class="player-center">
+    <button onclick="prevTrack()">⏮</button>
+    <button onclick="togglePlay()" id="playBtn">▶</button>
+    <button onclick="nextTrack()">⏭</button>
+    <input type="range" id="progress" value="0" min="0" max="100">
   </div>
 
-  <script src="app.js"></script>
+  <div class="player-right">
+    <span id="time">0:00 / 0:00</span>
+  </div>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
