@@ -24,7 +24,7 @@ function renderHome() {
       </div>
 
       <div class="artist-header">
-        <img src="assets/images/${data.artist.photo}" />
+        <img src="assets/${data.artist.photo}" />
         <div>
           <h1>${data.artist.name}</h1>
           <p>${data.artist.bio}</p>
@@ -42,7 +42,7 @@ function renderHome() {
       <div class="album-grid">
         ${data.albums.map(album => `
           <div class="album-item" onclick="renderAlbum('${album.id}')">
-            <img src="assets/images/${album.cover}" />
+            <img src="assets/${album.cover}" />
             <p>${album.title}</p>
           </div>
         `).join("")}
@@ -53,7 +53,7 @@ function renderHome() {
         <div class="album-grid">
           ${data.eps.map(ep => `
             <div class="album-item" onclick="renderAlbum('${ep.id}')">
-              <img src="assets/images/${ep.cover}" />
+              <img src="assets/${ep.cover}" />
               <p>${ep.title}</p>
             </div>
           `).join("")}
@@ -79,7 +79,7 @@ function renderAlbum(id) {
       <div class="back-button" onclick="renderHome()">← Back</div>
 
       <div class="album-header">
-        <img src="assets/images/${album.cover}" />
+        <img src="assets/${album.cover}" />
         <div>
           <h1>${album.title}</h1>
           <p style="max-width: 700px; line-height: 1.6; margin-top: 15px;">
@@ -149,7 +149,7 @@ function renderPost(id) {
 function createSongHTML(song) {
   return `
     <div class="song-row">
-      <img src="assets/images/${song.cover}" />
+      <img src="assets/${song.cover}" />
       <span>${song.title}</span>
       ${createPlayerControls(song)}
     </div>
