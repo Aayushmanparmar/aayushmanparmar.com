@@ -1,126 +1,76 @@
-const audio = new Audio();
-let trackList = [];
-let currentIdx = 0;
+let data;
 
-// 1. Initial Load: Fetch Metadata & Build UI
-async function init() {
-    try {
-        const response = await fetch('./assets/data.json');
-        const data = await response.json();
-        
-        // Fill Artist Info
-        document.getElementById('artist-name').innerText = data.artist;
-        document.getElementById('artist-bio').innerText = data.bio;
-        document.getElementById('album-title').innerText = data.album.title;
+fetch("assets/data.json")
+  .then(res => res.json())
+  .then(json => {
+    data = json;
+    loadArtist();
+    loadAlbums();
+  });
 
-        // Load Inspirations
-        const inspoList = document.getElementById('inspiration-list');
-        data.inspirations.forEach(item => {
-            const li = document.createElement('li');
-            li.innerText = item;
-            inspoList.appendChild(li);
-        });
+function loadArtist() {
+  document.getElementById("artistName").textContent = data.artist.name;
+  document.getElementById("artistTagline").textContent = data.artist.tagline;
+  document.getElementById("artistBio").textContent = data.artist.bio;
 
-        // Build Tracklist UI
-        trackList = data.album.tracks;
-        const container = document.getElementById('songs-container');
-        
-        trackList.forEach((track, index) => {
-            const row = document.createElement('div');
-            row.className = 'track-row';
-            row.innerHTML = `
-                <span class="track-num">${index + 1}</span>
-                <span class="track-title">${track.title}</span>
-            `;
-            row.onclick = () => playTrack(index);
-            container.appendChild(row);
-        });
+  const preview = document.getElementById("albumPreview");
 
-        setupOutputSelection();
-    } catch (err) {
-        console.error("Check your data.json path!", err);
-    }
+  data.catalogue.albums.forEach(album => {
+    const card = document.createElement("div");
+    card.className = "album-card";
+    card.innerHTML = `
+      <h3>${album.title}</h3>
+      <p>${album.year}</p>
+      <p>${album.tracks.length} Songs • ${album.runtime}</p>
+    `;
+    card.onclick = () => showAlbum(album.id);
+    preview.appendChild(card);
+  });
 }
 
-// 2. The Seamless Playback Logic
-function playTrack(index) {
-    currentIdx = index;
-    const track = trackList[index];
-    
-    // UI Updates
-    document.getElementById('track-name').innerText = `Playing: ${track.title}`;
-    document.querySelectorAll('.track-row').forEach(r => r.classList.remove('active'));
-    document.getElementById('songs-container').children[index].classList.add('active');
+function loadAlbums() {
+  const container = document.getElementById("albumsContainer");
 
-    // Audio Logic
-    audio.src = track.file;
-    audio.play();
-    document.getElementById('play-pause-btn').innerText = '⏸';
+  data.catalogue.albums.forEach(album => {
+    const div = document.createElement("div");
+    div.id = album.id;
+    div.style.display = "none";
 
-    // SEAMLESS TRICK: Preload the next heavy .wav file
-    if (index + 1 < trackList.length) {
-        const preloadLink = document.createElement('link');
-        preloadLink.rel = 'preload';
-        preloadLink.as = 'audio';
-        preloadLink.href = trackList[index + 1].file;
-        document.head.appendChild(preloadLink);
-    }
-}
+    let tracksHTML = "";
 
-// 3. Audio Output Selection (Spotify-style)
-async function setupOutputSelection() {
-    const selector = document.getElementById('audio-output-select');
-    if (!navigator.mediaDevices || !audio.setSinkId) return;
-
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const outputs = devices.filter(device => device.kind === 'audiooutput');
-
-    outputs.forEach(device => {
-        const opt = document.createElement('option');
-        opt.value = device.deviceId;
-        opt.text = device.label || `Output Device ${selector.length + 1}`;
-        selector.appendChild(opt);
+    album.tracks.forEach((track, index) => {
+      tracksHTML += `
+        <div class="track">
+          <span>${index + 1}. ${track.title}</span>
+        </div>
+        <audio controls src="music/${track.file}"></audio>
+      `;
     });
 
-    selector.onchange = () => audio.setSinkId(selector.value);
+    div.innerHTML = `
+      <h2>${album.title}</h2>
+      <p>${album.tracks.length} Songs • ${album.runtime}</p>
+      <p><strong>Written, Sequenced & Produced by Aayushman Parmar</strong></p>
+      <div class="tracklist">${tracksHTML}</div>
+    `;
+
+    container.appendChild(div);
+  });
 }
 
-// 4. Global Event Listeners
-document.getElementById('play-pause-btn').onclick = () => {
-    if (audio.paused) {
-        audio.play();
-        document.getElementById('play-pause-btn').innerText = '⏸';
-    } else {
-        audio.pause();
-        document.getElementById('play-pause-btn').innerText = '▶';
-    }
-};
+function showSection(sectionId) {
+  document.querySelectorAll(".section").forEach(sec => {
+    sec.classList.remove("active");
+  });
+  document.getElementById(sectionId).classList.add("active");
+}
 
-document.getElementById('volume-slider').oninput = (e) => {
-    audio.volume = e.target.value;
-};
+function showAlbum(albumId) {
+  showSection("albums");
 
-// Auto-play next tracktrackList.forEach((track, index) => {
-    const row = document.createElement('div');
-    row.className = 'track-row';
-    row.innerHTML = `
-        <span class="col-num">${index + 1}</span>
-        <span class="col-title">${track.title}</span>
-        <span class="col-time">${track.duration}</span>
-    `;
-    row.onclick = () => playTrack(index);
-    container.appendChild(row);
-});
-audio.onended = () => {
-    if (currentIdx < trackList.length - 1) playTrack(currentIdx + 1);
-};
+  document.querySelectorAll("#albumsContainer > div").forEach(div => {
+    div.style.display = "none";
+  });
 
-init();
-// Make the Hero Play button play the first track
-document.querySelector('.btn-play-red').onclick = () => playTrack(0);
-
-// Make the Shuffle button play a random track
-document.querySelector('.btn-shuffle').onclick = () => {
-    const randomIdx = Math.floor(Math.random() * trackList.length);
-    playTrack(randomIdx);
-};
+  document.getElementById(albumId).style.display = "block";
+}
