@@ -1,79 +1,139 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #121212;
+  background: #000;
   color: white;
   display: flex;
 }
 
+/* SIDEBAR */
 .sidebar {
   width: 220px;
   background: #000;
   padding: 20px;
   height: 100vh;
   position: fixed;
+  border-right: 1px solid #111;
 }
 
 .sidebar button {
   display: block;
   background: none;
   border: none;
-  color: white;
+  color: #aaa;
   padding: 12px 0;
   cursor: pointer;
   text-align: left;
+  font-size: 15px;
 }
 
 .sidebar button:hover {
-  color: #1db954;
+  color: white;
 }
 
+/* MAIN */
 .main {
   margin-left: 240px;
-  padding: 40px;
-  padding-bottom: 140px;
   width: 100%;
+  padding-bottom: 140px;
 }
 
 .section { display: none; }
 .section.active { display: block; }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+/* HERO */
+.artist-hero {
+  height: 400px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), #000),
+              url('assets/manah-kalah.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+}
+
+.hero-overlay h1 {
+  font-size: 50px;
+  margin: 0;
+}
+
+.hero-overlay p {
+  color: #bbb;
+}
+
+/* CONTENT */
+.content-area {
+  padding: 30px 40px;
+}
+
+/* TOP SONGS */
+#topSongs .song-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #111;
+  cursor: pointer;
+}
+
+#topSongs .song-row:hover {
+  background: #111;
+}
+
+/* HORIZONTAL ROW */
+.horizontal-row {
+  display: flex;
   gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
 }
 
 .album-card {
-  background: #181818;
-  padding: 15px;
-  border-radius: 10px;
+  min-width: 180px;
   cursor: pointer;
 }
 
 .album-card img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
-.album-card:hover {
-  background: #282828;
+.album-card p {
+  margin: 5px 0 0;
+  color: #bbb;
 }
 
-.track-row {
-  display: flex;
-  justify-content: space-between;
+/* BLOG */
+.new-post input,
+.new-post textarea {
+  width: 100%;
+  margin: 10px 0;
   padding: 10px;
-  border-bottom: 1px solid #333;
+  background: #111;
+  border: 1px solid #333;
+  color: white;
+}
+
+.new-post button {
+  padding: 10px 20px;
+  background: #1db954;
+  border: none;
   cursor: pointer;
 }
 
-.track-row:hover {
-  background: #1f1f1f;
+.blog-post {
+  background: #111;
+  padding: 15px;
+  margin-bottom: 15px;
 }
 
-.track-row.active {
-  color: #1db954;
+.comment-box input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  background: #222;
+  border: 1px solid #333;
+  color: white;
 }
 
 /* PLAYER */
@@ -81,38 +141,16 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #181818;
+  background: #111;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
-  border-top: 1px solid #333;
+  border-top: 1px solid #222;
 }
 
 .player img {
   width: 50px;
   height: 50px;
   border-radius: 5px;
-}
-
-.player-left {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.player-center {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.player-center input {
-  width: 300px;
-}
-
-@media (max-width: 768px) {
-  .sidebar { display: none; }
-  .main { margin-left: 0; }
-  .player-center input { width: 150px; }
 }
