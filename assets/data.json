@@ -1,32 +1,27 @@
-{
-  "artist": {
-    "name": "Your Artist Name",
-    "bio": "Artist bio goes here.",
-    "photo": "manah-kalah.jpg"
-  },
+"albums": [
+  {
+    "id": "manah-kalah",
+    "title": "Manah Kalah",
+    "cover": "manah-kalah.jpg",
+    "albumBio": "Manah Kalah is a jazz-rap driven, deeply personal body of work centered around family, generational tension, and emotional growth. The album traces a narrative arc in which the perspective of a child shifts from quiet resentment and internalized pressure toward understanding, empathy, and appreciation — a turning point crystallized in \"I Promise, I'm Alive.\" 
 
-  "topSongs": [
-    { "title": "Song 1", "cover": "manah-kalah.jpg" },
-    { "title": "Song 2", "cover": "manah-kalah.jpg" }
-  ],
+Rather than portraying extreme conflict, the project explores the subtler emotional divide common in many Indian households: children often feel unable to share their inner struggles, while parents silently carry concern they rarely express. The record examines how even supportive environments can still produce invisible expectations and unspoken burdens.
 
-  "albums": [
-    {
-      "id": "1",
-      "title": "Album One",
-      "cover": "manah-kalah.jpg",
-      "tracks": ["Track A", "Track B", "Track C"]
-    }
-  ],
-
-  "eps": [],
-
-  "blog": [
-    {
-      "id": "1",
-      "title": "First Blog Post",
-      "excerpt": "Short preview text...",
-      "content": "Full blog post content here."
-    }
-  ]
-}
+By moving from silence and misunderstanding to openness and emotional clarity, Manah Kalah builds an empathy bridge between generations — showing that the divide is not about villainy or rebellion, but about perspective, fear, and love expressed imperfectly.",
+    "tracks": [
+      "Vinyl",
+      "Manah",
+      "Contemporaries",
+      "Mortal",
+      "Mother-Son",
+      "Kalah",
+      "Stars / Colours",
+      "Take Me To Your Garden",
+      "Generational Wealth",
+      "Transform Ⅰ",
+      "Mirror",
+      "I Promise, I'm Alive",
+      "You're Never Over"
+    ]
+  }
+]
