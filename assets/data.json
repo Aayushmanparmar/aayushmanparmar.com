@@ -1,1 +1,25 @@
-
+{
+  "artist": "Your Name",
+  "bio": "Write a short blurb about your sound here.",
+  "inspirations": ["Artist A", "Artist B", "Artist C"],
+  "album": {
+    "title": "Album Title",
+    "description": "Inspired by...",
+    "cover": "assets/cover.jpg",
+    "tracks": [
+      { "id": 0, "title": "Track One", "file": "music/track1.wav" },
+      { "id": 1, "title": "Track Two", "file": "music/track2.wav" },
+      { "id": 2, "title": "Track Three", "file": "music/track3.wav" },
+      { "id": 3, "title": "Track Four", "file": "music/track4.wav" },
+      { "id": 4, "title": "Track Five", "file": "music/track5.wav" },
+      { "id": 5, "title": "Track Six", "file": "music/track6.wav" },
+      { "id": 6, "title": "Track Seven", "file": "music/track7.wav" },
+      { "id": 7, "title": "Track Eight", "file": "music/track8.wav" },
+      { "id": 8, "title": "Track Nine", "file": "music/track9.wav" },
+      { "id": 9, "title": "Track Ten", "file": "music/track10.wav" },
+      { "id": 10, "title": "Track Eleven", "file": "music/track11.wav" },
+      { "id": 11, "title": "Track Twelve", "file": "music/track12.wav" },
+      { "id": 12, "title": "Track Thirteen", "file": "music/track13.wav" }
+    ]
+  }
+}
