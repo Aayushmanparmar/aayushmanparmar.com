@@ -1,71 +1,60 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist Catalogue | Lossless Audio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Aayushman Parmar</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="app-container">
-        <aside class="sidebar">
-            <div class="profile-area">
-                <img src="assets/profile.jpg" alt="Artist Profile" class="avatar">
-                <h2 id="artist-name">Loading...</h2>
-                <p id="artist-bio" class="bio-text"></p>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Inspirations</h3>
-                <ul id="inspiration-list" class="inspo-list"></ul>
-            </div>
-        </aside>
 
-        <main class="main-content">
-            <header class="album-hero">
-                <div class="cover-wrapper">
-                    <img src="assets/cover.jpg" alt="Album Cover" class="album-art">
-                </div>
-                <div class="album-meta">
-                    <span class="badge">STUDIO MASTER</span>
-                    <h1 id="album-title">Catalogue</h1>
-                    <p id="album-desc">13 Tracks • Lossless WAV</p>
-                </div>
-            </header>
+  <div class="sidebar">
+    <h2 class="logo">AAYUSHMAN</h2>
+    <nav>
+      <button onclick="showSection('home')">Home</button>
+      <button onclick="showSection('albums')">Albums</button>
+      <button onclick="showSection('eps')">EPs</button>
+      <button onclick="showSection('singles')">Singles</button>
+    </nav>
+  </div>
 
-            <section class="tracklist-container">
-                <div class="tracklist-header">
-                    <span>#</span>
-                    <span>TITLE</span>
-                </div>
-                <div id="songs-container">
-                    </div>
-            </section>
-        </main>
+  <div class="main">
 
-        <footer class="player-bar">
-            <div class="current-track-info">
-                <p id="track-name">Select a track to begin</p>
-            </div>
+    <!-- ARTIST HOME -->
+    <section id="home" class="section active">
+      <div class="hero">
+        <h1 id="artistName"></h1>
+        <p id="artistTagline"></p>
+      </div>
 
-            <div class="playback-controls">
-                <button id="play-pause-btn" class="main-play-btn">▶</button>
-            </div>
+      <div class="bio">
+        <h2>About</h2>
+        <p id="artistBio"></p>
+      </div>
 
-            <div class="audio-settings">
-                <select id="audio-output-select" title="Choose Output Device">
-                    <option value="">Default Output</option>
-                </select>
-                <div class="volume-container">
-                    <span>Vol</span>
-                    <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.8">
-                </div>
-            </div>
-        </footer>
-    </div>
+      <div class="catalogue-preview">
+        <h2>Catalogue</h2>
+        <div id="albumPreview" class="grid"></div>
+      </div>
+    </section>
 
-    <script src="app.js"></script>
+    <!-- ALBUMS PAGE -->
+    <section id="albums" class="section">
+      <h1>Albums</h1>
+      <div id="albumsContainer"></div>
+    </section>
+
+    <section id="eps" class="section">
+      <h1>EPs</h1>
+      <p>Coming Soon</p>
+    </section>
+
+    <section id="singles" class="section">
+      <h1>Singles</h1>
+      <p>Coming Soon</p>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
