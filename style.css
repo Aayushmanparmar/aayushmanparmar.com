@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #121212;
+  background: #121212;
   color: white;
   display: flex;
 }
@@ -14,18 +14,13 @@ body {
   position: fixed;
 }
 
-.logo {
-  margin-bottom: 30px;
-}
-
 .sidebar button {
   display: block;
   background: none;
   border: none;
   color: white;
-  padding: 10px 0;
+  padding: 12px 0;
   cursor: pointer;
-  font-size: 16px;
   text-align: left;
 }
 
@@ -36,50 +31,88 @@ body {
 .main {
   margin-left: 240px;
   padding: 40px;
+  padding-bottom: 140px;
   width: 100%;
 }
 
-.section {
-  display: none;
-}
-
-.section.active {
-  display: block;
-}
-
-.hero {
-  margin-bottom: 40px;
-}
+.section { display: none; }
+.section.active { display: block; }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
 }
 
 .album-card {
   background: #181818;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 15px;
+  border-radius: 10px;
   cursor: pointer;
+}
+
+.album-card img {
+  width: 100%;
+  border-radius: 8px;
 }
 
 .album-card:hover {
   background: #282828;
 }
 
-.tracklist {
-  margin-top: 20px;
-}
-
-.track {
+.track-row {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
+  padding: 10px;
   border-bottom: 1px solid #333;
+  cursor: pointer;
 }
 
-audio {
+.track-row:hover {
+  background: #1f1f1f;
+}
+
+.track-row.active {
+  color: #1db954;
+}
+
+/* PLAYER */
+.player {
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  margin-top: 5px;
+  background: #181818;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  border-top: 1px solid #333;
+}
+
+.player img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.player-left {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.player-center {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.player-center input {
+  width: 300px;
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .player-center input { width: 150px; }
 }
