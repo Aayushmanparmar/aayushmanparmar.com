@@ -1,25 +1,34 @@
 {
-  "artist": "Aayushman Parmar",
-  "bio": "Hip-Hop/Rap Artist based in 2026. Lossless studio masters.",
-  "inspirations": ["Artist A", "Artist B", "Artist C"],
-  "album": {
-    "title": "Manah Kalah",
-    "description": "13 Tracks • Lossless WAV",
-    "cover": "assets/cover.jpg",
-    "tracks": [
-      { "id": 0, "title": "Vinyl", "file": "music/track1.wav", "duration": "3:43" },
-      { "id": 1, "title": "Manah", "file": "music/track2.wav", "duration": "6:34" },
-      { "id": 2, "title": "Contemporaries", "file": "music/track3.wav", "duration": "4:26" },
-      { "id": 3, "title": "Mortal", "file": "music/track4.wav", "duration": "7:14" },
-      { "id": 4, "title": "Track Five", "file": "music/track5.wav", "duration": "3:12" },
-      { "id": 5, "title": "Track Six", "file": "music/track6.wav", "duration": "4:05" },
-      { "id": 6, "title": "Track Seven", "file": "music/track7.wav", "duration": "3:58" },
-      { "id": 7, "title": "Track Eight", "file": "music/track8.wav", "duration": "5:20" },
-      { "id": 8, "title": "Track Nine", "file": "music/track9.wav", "duration": "4:45" },
-      { "id": 9, "title": "Track Ten", "file": "music/track10.wav", "duration": "3:30" },
-      { "id": 10, "title": "Track Eleven", "file": "music/track11.wav", "duration": "4:15" },
-      { "id": 11, "title": "Track Twelve", "file": "music/track12.wav", "duration": "5:10" },
-      { "id": 12, "title": "Track Thirteen", "file": "music/track13.wav", "duration": "6:00" }
-    ]
+  "artist": {
+    "name": "Aayushman Parmar",
+    "tagline": "Written, Sequenced & Produced by Aayushman Parmar",
+    "bio": "Aayushman Parmar is an independent conceptual artist whose music explores generational legacy, identity, spirituality, and the silent emotional architecture of Indian households. His debut album 'Manah Kalah' examines the evolving perspective of a son toward his family — moving from internalized pressure and isolation toward reconciliation, empathy, and emotional maturity."
+  },
+  "catalogue": {
+    "albums": [
+      {
+        "id": "manah-kalah",
+        "title": "Manah Kalah",
+        "year": "2026",
+        "runtime": "1 hr 30 min",
+        "tracks": [
+          { "title": "Vinyl", "file": "track1.wav" },
+          { "title": "Manah", "file": "track2.wav" },
+          { "title": "Contemporaries", "file": "track3.wav" },
+          { "title": "Mortal", "file": "track4.wav" },
+          { "title": "Mother-Son", "file": "track5.wav" },
+          { "title": "Kalah", "file": "track6.wav" },
+          { "title": "Stars / Colours", "file": "track7.wav" },
+          { "title": "Take Me To Your Garden", "file": "track8.wav" },
+          { "title": "Generational Wealth", "file": "track9.wav" },
+          { "title": "Transform I", "file": "track10.wav" },
+          { "title": "Mirror", "file": "track11.wav" },
+          { "title": "I Promise, I'm Alive", "file": "track12.wav" },
+          { "title": "You're Never Over", "file": "track13.wav" }
+        ]
+      }
+    ],
+    "eps": [],
+    "singles": []
   }
 }
