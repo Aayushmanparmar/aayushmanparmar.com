@@ -2,83 +2,57 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Aayushman Parmar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discography</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="sidebar">
-  <h2 class="logo">AAYUSHMAN</h2>
-  <button onclick="showSection('home')">Home</button>
-  <button onclick="showSection('blog')">Blog</button>
-  <button onclick="showSection('albums')">Albums</button>
-  <button onclick="showSection('eps')">EPs</button>
-  <button onclick="showSection('singles')">Singles</button>
+  <button onclick="showHome()">Home</button>
+  <button onclick="showBlog()">Blog</button>
 </div>
 
 <div class="main">
 
   <!-- HOME -->
-  <section id="home" class="section active">
+  <section id="home" class="active">
 
-    <div class="artist-hero">
-      <div class="hero-overlay">
-        <h1 id="artistName"></h1>
-        <p id="artistTagline"></p>
-      </div>
+    <div class="hero">
+      <h1>Manah Kalah</h1>
     </div>
 
-    <div class="content-area">
+    <div class="content">
 
       <h2>Top Songs</h2>
-      <div id="topSongs"></div>
+      <div id="songGrid" class="song-grid"></div>
 
       <h2>Albums</h2>
-      <div id="albumRow" class="horizontal-row"></div>
-
-      <h2>Singles & EPs</h2>
-      <div id="singleRow" class="horizontal-row"></div>
+      <div id="albumSection"></div>
 
     </div>
 
+  </section>
+
+  <!-- ALBUM PAGE -->
+  <section id="albumPage">
+    <div id="albumContent"></div>
   </section>
 
   <!-- BLOG -->
-  <section id="blog" class="section">
+  <section id="blog">
     <h1>Blog</h1>
-
     <div id="blogPosts"></div>
-
-    <div class="new-post">
-      <h3>Create Post</h3>
-      <input id="postTitle" placeholder="Title">
-      <textarea id="postContent" placeholder="Write something..."></textarea>
-      <button onclick="createPost()">Publish</button>
-    </div>
-  </section>
-
-  <!-- ALBUM VIEW -->
-  <section id="albums" class="section">
-    <div id="albumView"></div>
-  </section>
-
-  <section id="eps" class="section">
-    <h1>EPs</h1>
-  </section>
-
-  <section id="singles" class="section">
-    <h1>Singles</h1>
   </section>
 
 </div>
 
-<!-- GLOBAL PLAYER -->
+<!-- PLAYER -->
 <div class="player">
   <div class="player-left">
-    <img id="playerCover" />
+    <img id="playerCover">
     <div>
       <div id="playerTitle">Select a track</div>
-      <div id="playerArtist">Aayushman Parmar</div>
     </div>
   </div>
 
@@ -86,7 +60,6 @@
     <button onclick="prevTrack()">⏮</button>
     <button onclick="togglePlay()" id="playBtn">▶</button>
     <button onclick="nextTrack()">⏭</button>
-    <input type="range" id="progress" value="0" min="0" max="100">
   </div>
 
   <div class="player-right">
