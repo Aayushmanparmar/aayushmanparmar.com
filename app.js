@@ -42,7 +42,7 @@ function renderHome() {
       <div class="album-grid">
         ${data.albums.map(album => `
           <div class="album-item" onclick="renderAlbum('${album.id}')">
-            <img src="assets/${album.cover}" />
+           <img src="assets/${album.cover}" />
             <p>${album.title}</p>
           </div>
         `).join("")}
