@@ -126,3 +126,98 @@ function showSection(id) {
   });
   document.getElementById(id).classList.add("active");
 }
+// TOP SONGS RENDER
+function renderTopSongs() {
+  const top = document.getElementById("topSongs");
+  const album = data.catalogue.albums[0];
+
+  album.tracks.slice(0, 5).forEach((track, i) => {
+    const row = document.createElement("div");
+    row.className = "song-row";
+    row.innerHTML = `<span>${track.title}</span><span>Manah Kalah</span>`;
+    row.onclick = () => {
+      currentAlbum = album;
+      playTrack(i);
+    };
+    top.appendChild(row);
+  });
+}
+
+// HORIZONTAL ALBUMS
+function renderHorizontal() {
+  const albumRow = document.getElementById("albumRow");
+  const album = data.catalogue.albums[0];
+
+  const card = document.createElement("div");
+  card.className = "album-card";
+  card.innerHTML = `
+    <img src="${album.cover}">
+    <h4>${album.title}</h4>
+    <p>${album.runtime}</p>
+  `;
+  card.onclick = () => openAlbum(album);
+
+  albumRow.appendChild(card);
+}
+
+// BLOG SYSTEM
+function createPost() {
+  const title = document.getElementById("postTitle").value;
+  const content = document.getElementById("postContent").value;
+
+  if (!title || !content) return;
+
+  const post = { title, content, comments: [] };
+
+  let posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
+  posts.push(post);
+  localStorage.setItem("blogPosts", JSON.stringify(posts));
+
+  renderPosts();
+}
+
+function renderPosts() {
+  const container = document.getElementById("blogPosts");
+  container.innerHTML = "";
+
+  let posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
+
+  posts.forEach((post, index) => {
+    const div = document.createElement("div");
+    div.className = "blog-post";
+
+    div.innerHTML = `
+      <h3>${post.title}</h3>
+      <p>${post.content}</p>
+      <div class="comments"></div>
+      <div class="comment-box">
+        <input placeholder="Write a comment..."
+        onkeypress="if(event.key==='Enter') addComment(${index}, this.value)">
+      </div>
+    `;
+
+    const commentsDiv = div.querySelector(".comments");
+
+    post.comments.forEach(c => {
+      const p = document.createElement("p");
+      p.textContent = c;
+      commentsDiv.appendChild(p);
+    });
+
+    container.appendChild(div);
+  });
+}
+
+function addComment(index, text) {
+  if (!text) return;
+
+  let posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
+  posts[index].comments.push(text);
+  localStorage.setItem("blogPosts", JSON.stringify(posts));
+
+  renderPosts();
+}
+
+renderTopSongs();
+renderHorizontal();
+renderPosts();
