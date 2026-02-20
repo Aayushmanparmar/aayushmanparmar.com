@@ -2,7 +2,7 @@
   "artist": {
     "name": "Aayushman Parmar",
     "tagline": "Written, Sequenced & Produced by Aayushman Parmar",
-    "bio": "Aayushman Parmar is an independent conceptual artist whose music explores generational legacy, identity, spirituality, and the silent emotional architecture of Indian households. His debut album 'Manah Kalah' examines the evolving perspective of a son toward his family — moving from internalized pressure and isolation toward reconciliation, empathy, and emotional maturity."
+    "bio": "Aayushman Parmar is a conceptual independent artist whose music explores generational legacy, identity, spirituality, and the silent emotional architecture of Indian households. His debut album 'Manah Kalah' examines the evolving perspective of a son toward his family — moving from internalized pressure and emotional isolation toward reconciliation, empathy, and maturity."
   },
   "catalogue": {
     "albums": [
@@ -11,6 +11,7 @@
         "title": "Manah Kalah",
         "year": "2026",
         "runtime": "1 hr 30 min",
+        "cover": "assets/manah-kalah.jpg",
         "tracks": [
           { "title": "Vinyl", "file": "track1.wav" },
           { "title": "Manah", "file": "track2.wav" },
