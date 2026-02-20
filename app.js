@@ -100,7 +100,17 @@ document.getElementById('volume-slider').oninput = (e) => {
     audio.volume = e.target.value;
 };
 
-// Auto-play next track
+// Auto-play next tracktrackList.forEach((track, index) => {
+    const row = document.createElement('div');
+    row.className = 'track-row';
+    row.innerHTML = `
+        <span class="col-num">${index + 1}</span>
+        <span class="col-title">${track.title}</span>
+        <span class="col-time">${track.duration}</span>
+    `;
+    row.onclick = () => playTrack(index);
+    container.appendChild(row);
+});
 audio.onended = () => {
     if (currentIdx < trackList.length - 1) playTrack(currentIdx + 1);
 };
