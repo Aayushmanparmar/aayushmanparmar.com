@@ -10,6 +10,7 @@
 <div class="sidebar">
   <h2 class="logo">AAYUSHMAN</h2>
   <button onclick="showSection('home')">Home</button>
+  <button onclick="showSection('blog')">Blog</button>
   <button onclick="showSection('albums')">Albums</button>
   <button onclick="showSection('eps')">EPs</button>
   <button onclick="showSection('singles')">Singles</button>
@@ -17,33 +18,56 @@
 
 <div class="main">
 
+  <!-- HOME -->
   <section id="home" class="section active">
-    <div class="hero">
-      <h1 id="artistName"></h1>
-      <p id="artistTagline"></p>
+
+    <div class="artist-hero">
+      <div class="hero-overlay">
+        <h1 id="artistName"></h1>
+        <p id="artistTagline"></p>
+      </div>
     </div>
 
-    <div class="bio">
-      <h2>About</h2>
-      <p id="artistBio"></p>
+    <div class="content-area">
+
+      <h2>Top Songs</h2>
+      <div id="topSongs"></div>
+
+      <h2>Albums</h2>
+      <div id="albumRow" class="horizontal-row"></div>
+
+      <h2>Singles & EPs</h2>
+      <div id="singleRow" class="horizontal-row"></div>
+
     </div>
 
-    <h2>Albums</h2>
-    <div id="albumGrid" class="grid"></div>
   </section>
 
+  <!-- BLOG -->
+  <section id="blog" class="section">
+    <h1>Blog</h1>
+
+    <div id="blogPosts"></div>
+
+    <div class="new-post">
+      <h3>Create Post</h3>
+      <input id="postTitle" placeholder="Title">
+      <textarea id="postContent" placeholder="Write something..."></textarea>
+      <button onclick="createPost()">Publish</button>
+    </div>
+  </section>
+
+  <!-- ALBUM VIEW -->
   <section id="albums" class="section">
     <div id="albumView"></div>
   </section>
 
   <section id="eps" class="section">
     <h1>EPs</h1>
-    <p>Coming Soon</p>
   </section>
 
   <section id="singles" class="section">
     <h1>Singles</h1>
-    <p>Coming Soon</p>
   </section>
 
 </div>
