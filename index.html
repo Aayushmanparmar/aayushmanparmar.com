@@ -2,71 +2,14 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Discography</title>
+  <title>Artist Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="sidebar">
-  <button onclick="showHome()">Home</button>
-  <button onclick="showBlog()">Blog</button>
-</div>
+  <div id="app"></div>
 
-<div class="main">
-
-  <!-- HOME -->
-  <section id="home" class="active">
-
-    <div class="hero">
-      <h1>Manah Kalah</h1>
-    </div>
-
-    <div class="content">
-
-      <h2>Top Songs</h2>
-      <div id="songGrid" class="song-grid"></div>
-
-      <h2>Albums</h2>
-      <div id="albumSection"></div>
-
-    </div>
-
-  </section>
-
-  <!-- ALBUM PAGE -->
-  <section id="albumPage">
-    <div id="albumContent"></div>
-  </section>
-
-  <!-- BLOG -->
-  <section id="blog">
-    <h1>Blog</h1>
-    <div id="blogPosts"></div>
-  </section>
-
-</div>
-
-<!-- PLAYER -->
-<div class="player">
-  <div class="player-left">
-    <img id="playerCover">
-    <div>
-      <div id="playerTitle">Select a track</div>
-    </div>
-  </div>
-
-  <div class="player-center">
-    <button onclick="prevTrack()">⏮</button>
-    <button onclick="togglePlay()" id="playBtn">▶</button>
-    <button onclick="nextTrack()">⏭</button>
-  </div>
-
-  <div class="player-right">
-    <span id="time">0:00 / 0:00</span>
-  </div>
-</div>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
