@@ -6,21 +6,20 @@
   },
 
   "topSongs": [
-    { "title": "Vinyl", "cover": "manah-kalah.jpg" },
-    { "title": "Manah", "cover": "manah-kalah.jpg" },
-    { "title": "Contemporaries", "cover": "manah-kalah.jpg" },
-    { "title": "Mortal", "cover": "manah-kalah.jpg" },
-    { "title": "Mother-Son", "cover": "manah-kalah.jpg" },
-    { "title": "Kalah", "cover": "manah-kalah.jpg" },
-    { "title": "Stars / Colours", "cover": "manah-kalah.jpg" },
-    { "title": "Take Me To Your Garden", "cover": "manah-kalah.jpg" },
-    { "title": "Generational Wealth", "cover": "manah-kalah.jpg" },
-    { "title": "Transform I", "cover": "manah-kalah.jpg" },
-    { "title": "Mirror", "cover": "manah-kalah.jpg" },
-    { "title": "I Promise, I'm Alive", "cover": "manah-kalah.jpg" },
-    { "title": "You're Never Over", "cover": "manah-kalah.jpg" }
-  ],
-
+  { "title": "Vinyl", "cover": "manah-kalah.jpg", "audio": "vinyl.mp3" },
+  { "title": "Manah", "cover": "manah-kalah.jpg", "audio": "manah.mp3" },
+  { "title": "Contemporaries", "cover": "manah-kalah.jpg", "audio": "contemporaries.mp3" },
+  { "title": "Mortal", "cover": "manah-kalah.jpg", "audio": "mortal.mp3" },
+  { "title": "Mother-Son", "cover": "manah-kalah.jpg", "audio": "mother-son.mp3" },
+  { "title": "Kalah", "cover": "manah-kalah.jpg", "audio": "kalah.mp3" },
+  { "title": "Stars / Colours", "cover": "manah-kalah.jpg", "audio": "stars-colours.mp3" },
+  { "title": "Take Me To Your Garden", "cover": "manah-kalah.jpg", "audio": "take-me-to-your-garden.mp3" },
+  { "title": "Generational Wealth", "cover": "manah-kalah.jpg", "audio": "generational-wealth.mp3" },
+  { "title": "Transform I", "cover": "manah-kalah.jpg", "audio": "transform-i.mp3" },
+  { "title": "Mirror", "cover": "manah-kalah.jpg", "audio": "mirror.mp3" },
+  { "title": "I Promise, I'm Alive", "cover": "manah-kalah.jpg", "audio": "i-promise-im-alive.mp3" },
+  { "title": "You're Never Over", "cover": "manah-kalah.jpg", "audio": "youre-never-over.mp3" }
+],
   "albums": [
     {
       "id": "manah-kalah",
