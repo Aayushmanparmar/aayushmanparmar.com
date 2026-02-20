@@ -116,3 +116,11 @@ audio.onended = () => {
 };
 
 init();
+// Make the Hero Play button play the first track
+document.querySelector('.btn-play-red').onclick = () => playTrack(0);
+
+// Make the Shuffle button play a random track
+document.querySelector('.btn-shuffle').onclick = () => {
+    const randomIdx = Math.floor(Math.random() * trackList.length);
+    playTrack(randomIdx);
+};
