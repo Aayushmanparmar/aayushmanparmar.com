@@ -47,15 +47,17 @@ function renderHome() {
         `).join("")}
       </div>
 
-      <h2>EPs</h2>
-      <div class="album-grid">
-        ${data.eps.map(ep => `
-          <div class="album-item" onclick="renderAlbum('${ep.id}')">
-            <img src="assets/${ep.cover}" />
-            <p>${ep.title}</p>
-          </div>
-        `).join("")}
-      </div>
+      ${data.eps.length > 0 ? `
+        <h2>EPs</h2>
+        <div class="album-grid">
+          ${data.eps.map(ep => `
+            <div class="album-item" onclick="renderAlbum('${ep.id}')">
+              <img src="assets/${ep.cover}" />
+              <p>${ep.title}</p>
+            </div>
+          `).join("")}
+        </div>
+      ` : ""}
     </div>
   `;
 }
@@ -84,7 +86,9 @@ function renderAlbum(id) {
       <h2>Tracklist</h2>
 
       ${album.tracks.map((track, i) => `
-        <div class="track-row">${i + 1}. ${track}</div>
+        <div class="track-row">
+          ${i + 1}. ${track}
+        </div>
       `).join("")}
     </div>
   `;
@@ -96,7 +100,6 @@ function renderBlog() {
   app.innerHTML = `
     <div class="container">
       <div class="back-button" onclick="renderHome()">← Back</div>
-
       <h1>Blog</h1>
 
       ${data.blog.map(post => `
@@ -117,7 +120,7 @@ function renderPost(id) {
     <div class="container">
       <div class="back-button" onclick="renderBlog()">← Back</div>
       <h1>${post.title}</h1>
-      <p>${post.content}</p>
+      <p style="line-height: 1.6;">${post.content}</p>
     </div>
   `;
 }
