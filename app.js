@@ -1,223 +1,140 @@
-let data;
-let currentAlbum;
-let currentTrackIndex = 0;
 let audio = new Audio();
+let currentAlbum = null;
+let currentIndex = 0;
 
-fetch("assets/data.json")
-  .then(res => res.json())
-  .then(json => {
-    data = json;
-    init();
-  });
+const album = {
+  title: "Manah Kalah",
+  cover: "assets/manah-kalah.jpg",
+  credit: "Written, Sequenced & Produced by Aayushman Parmar",
+  tracks: [
+    { title: "Song 1", file: "music/track1.mp3" },
+    { title: "Song 2", file: "music/track2.mp3" },
+    { title: "Song 3", file: "music/track3.mp3" },
+    { title: "Song 4", file: "music/track4.mp3" },
+    { title: "Song 5", file: "music/track5.mp3" },
+    { title: "Song 6", file: "music/track6.mp3" },
+    { title: "Song 7", file: "music/track7.mp3" },
+    { title: "Song 8", file: "music/track8.mp3" }
+  ]
+};
 
-function init() {
-  document.getElementById("artistName").textContent = data.artist.name;
-  document.getElementById("artistTagline").textContent = data.artist.tagline;
-  document.getElementById("artistBio").textContent = data.artist.bio;
-
-  renderAlbums();
+function showHome() {
+  setActive("home");
 }
 
-function renderAlbums() {
-  const grid = document.getElementById("albumGrid");
+function showBlog() {
+  setActive("blog");
+}
 
-  data.catalogue.albums.forEach(album => {
+function setActive(id) {
+  document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function renderSongs() {
+  const grid = document.getElementById("songGrid");
+  grid.innerHTML = "";
+
+  album.tracks.forEach((track, index) => {
     const card = document.createElement("div");
-    card.className = "album-card";
-    card.innerHTML = `
-      <img src="${album.cover}">
-      <h3>${album.title}</h3>
-      <p>${album.tracks.length} Songs • ${album.runtime}</p>
-    `;
-    card.onclick = () => openAlbum(album);
+    card.className = "song-card";
+    card.innerText = track.title;
+    card.onclick = () => {
+      currentAlbum = album;
+      playTrack(index);
+    };
     grid.appendChild(card);
   });
 }
 
-function openAlbum(album) {
-  currentAlbum = album;
-  showSection("albums");
-
-  const view = document.getElementById("albumView");
-  view.innerHTML = `
-    <h1>${album.title}</h1>
-    <p>${album.tracks.length} Songs • ${album.runtime}</p>
-    <p><strong>Written, Sequenced & Produced by Aayushman Parmar</strong></p>
-    <div id="trackList"></div>
+function renderAlbum() {
+  const section = document.getElementById("albumSection");
+  section.innerHTML = `
+    <div class="album-card" onclick="openAlbum()">
+      <img src="${album.cover}">
+      <p>${album.title}</p>
+    </div>
   `;
+}
 
-  const trackList = document.getElementById("trackList");
+function openAlbum() {
+  setActive("albumPage");
+
+  const container = document.getElementById("albumContent");
+  container.innerHTML = `
+    <div style="padding:60px 40px;">
+      <h1>${album.title}</h1>
+    </div>
+  `;
 
   album.tracks.forEach((track, index) => {
     const row = document.createElement("div");
     row.className = "track-row";
-    row.innerHTML = `<span>${index + 1}. ${track.title}</span>`;
-    row.onclick = () => playTrack(index);
-    trackList.appendChild(row);
+    row.innerHTML = `
+      <span>${index + 1}. ${track.title}</span>
+      <span>▶</span>
+    `;
+    row.onclick = () => {
+      currentAlbum = album;
+      playTrack(index);
+    };
+    container.appendChild(row);
   });
+
+  const credit = document.createElement("div");
+  credit.className = "album-credit";
+  credit.innerText = album.credit;
+  container.appendChild(credit);
 }
 
 function playTrack(index) {
-  currentTrackIndex = index;
-  const track = currentAlbum.tracks[index];
-
-  audio.src = `music/${track.file}`;
+  currentIndex = index;
+  audio.src = currentAlbum.tracks[index].file;
   audio.play();
 
-  document.getElementById("playerTitle").textContent = track.title;
-  document.getElementById("playerCover").src = currentAlbum.cover;
-  document.getElementById("playBtn").textContent = "⏸";
+  document.getElementById("playerTitle").innerText =
+    currentAlbum.tracks[index].title;
 
-  highlightTrack();
+  document.getElementById("playerCover").src =
+    currentAlbum.cover;
+
+  document.getElementById("playBtn").innerText = "⏸";
 }
 
 function togglePlay() {
   if (audio.paused) {
     audio.play();
-    document.getElementById("playBtn").textContent = "⏸";
+    document.getElementById("playBtn").innerText = "⏸";
   } else {
     audio.pause();
-    document.getElementById("playBtn").textContent = "▶";
+    document.getElementById("playBtn").innerText = "▶";
   }
 }
 
 function nextTrack() {
-  if (currentTrackIndex < currentAlbum.tracks.length - 1) {
-    playTrack(currentTrackIndex + 1);
-  }
+  currentIndex = (currentIndex + 1) % currentAlbum.tracks.length;
+  playTrack(currentIndex);
 }
 
 function prevTrack() {
-  if (currentTrackIndex > 0) {
-    playTrack(currentTrackIndex - 1);
-  }
+  currentIndex =
+    (currentIndex - 1 + currentAlbum.tracks.length) %
+    currentAlbum.tracks.length;
+  playTrack(currentIndex);
 }
-
-audio.addEventListener("ended", nextTrack);
 
 audio.addEventListener("timeupdate", () => {
-  const progress = document.getElementById("progress");
-  progress.value = (audio.currentTime / audio.duration) * 100 || 0;
+  const current = Math.floor(audio.currentTime);
+  const duration = Math.floor(audio.duration || 0);
 
-  document.getElementById("time").textContent =
-    formatTime(audio.currentTime) + " / " + formatTime(audio.duration);
+  const format = s => `${Math.floor(s / 60)}:${(s % 60)
+    .toString()
+    .padStart(2, "0")}`;
+
+  document.getElementById("time").innerText =
+    `${format(current)} / ${format(duration)}`;
 });
 
-document.getElementById("progress").addEventListener("input", e => {
-  audio.currentTime = (e.target.value / 100) * audio.duration;
-});
-
-function highlightTrack() {
-  document.querySelectorAll(".track-row").forEach((row, i) => {
-    row.classList.toggle("active", i === currentTrackIndex);
-  });
-}
-
-function formatTime(seconds) {
-  if (!seconds) return "0:00";
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
-}
-
-function showSection(id) {
-  document.querySelectorAll(".section").forEach(sec => {
-    sec.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
-}
-// TOP SONGS RENDER
-function renderTopSongs() {
-  const top = document.getElementById("topSongs");
-  const album = data.catalogue.albums[0];
-
-  album.tracks.slice(0, 5).forEach((track, i) => {
-    const row = document.createElement("div");
-    row.className = "song-row";
-    row.innerHTML = `<span>${track.title}</span><span>Manah Kalah</span>`;
-    row.onclick = () => {
-      currentAlbum = album;
-      playTrack(i);
-    };
-    top.appendChild(row);
-  });
-}
-
-// HORIZONTAL ALBUMS
-function renderHorizontal() {
-  const albumRow = document.getElementById("albumRow");
-  const album = data.catalogue.albums[0];
-
-  const card = document.createElement("div");
-  card.className = "album-card";
-  card.innerHTML = `
-    <img src="${album.cover}">
-    <h4>${album.title}</h4>
-    <p>${album.runtime}</p>
-  `;
-  card.onclick = () => openAlbum(album);
-
-  albumRow.appendChild(card);
-}
-
-// BLOG SYSTEM
-function createPost() {
-  const title = document.getElementById("postTitle").value;
-  const content = document.getElementById("postContent").value;
-
-  if (!title || !content) return;
-
-  const post = { title, content, comments: [] };
-
-  let posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
-  posts.push(post);
-  localStorage.setItem("blogPosts", JSON.stringify(posts));
-
-  renderPosts();
-}
-
-function renderPosts() {
-  const container = document.getElementById("blogPosts");
-  container.innerHTML = "";
-
-  let posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
-
-  posts.forEach((post, index) => {
-    const div = document.createElement("div");
-    div.className = "blog-post";
-
-    div.innerHTML = `
-      <h3>${post.title}</h3>
-      <p>${post.content}</p>
-      <div class="comments"></div>
-      <div class="comment-box">
-        <input placeholder="Write a comment..."
-        onkeypress="if(event.key==='Enter') addComment(${index}, this.value)">
-      </div>
-    `;
-
-    const commentsDiv = div.querySelector(".comments");
-
-    post.comments.forEach(c => {
-      const p = document.createElement("p");
-      p.textContent = c;
-      commentsDiv.appendChild(p);
-    });
-
-    container.appendChild(div);
-  });
-}
-
-function addComment(index, text) {
-  if (!text) return;
-
-  let posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
-  posts[index].comments.push(text);
-  localStorage.setItem("blogPosts", JSON.stringify(posts));
-
-  renderPosts();
-}
-
-renderTopSongs();
-renderHorizontal();
-renderPosts();
+renderSongs();
+renderAlbum();
+showHome();
