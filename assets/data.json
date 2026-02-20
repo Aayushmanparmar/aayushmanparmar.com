@@ -1,27 +1,58 @@
-"albums": [
-  {
-    "id": "manah-kalah",
-    "title": "Manah Kalah",
-    "cover": "manah-kalah.jpg",
-    "albumBio": "Manah Kalah is a jazz-rap driven, deeply personal body of work centered around family, generational tension, and emotional growth. The album traces a narrative arc in which the perspective of a child shifts from quiet resentment and internalized pressure toward understanding, empathy, and appreciation — a turning point crystallized in \"I Promise, I'm Alive.\" 
+{
+  "artist": {
+    "name": "Aayushman Parmar",
+    "bio": "Aayushman Parmar is an independent artist and producer exploring introspection, generational identity, and emotional nuance through jazz-rap influenced soundscapes. His work examines the subtle tensions between parents and children in Indian households — not through extremes, but through the quieter, internalized pressures and unspoken fears that shape relationships.",
+    "photo": "manah-kalah.jpg"
+  },
 
-Rather than portraying extreme conflict, the project explores the subtler emotional divide common in many Indian households: children often feel unable to share their inner struggles, while parents silently carry concern they rarely express. The record examines how even supportive environments can still produce invisible expectations and unspoken burdens.
+  "topSongs": [
+    { "title": "Vinyl", "cover": "manah-kalah.jpg" },
+    { "title": "Manah", "cover": "manah-kalah.jpg" },
+    { "title": "Contemporaries", "cover": "manah-kalah.jpg" },
+    { "title": "Mortal", "cover": "manah-kalah.jpg" },
+    { "title": "Mother-Son", "cover": "manah-kalah.jpg" },
+    { "title": "Kalah", "cover": "manah-kalah.jpg" },
+    { "title": "Stars / Colours", "cover": "manah-kalah.jpg" },
+    { "title": "Take Me To Your Garden", "cover": "manah-kalah.jpg" },
+    { "title": "Generational Wealth", "cover": "manah-kalah.jpg" },
+    { "title": "Transform Ⅰ", "cover": "manah-kalah.jpg" },
+    { "title": "Mirror", "cover": "manah-kalah.jpg" },
+    { "title": "I Promise, I'm Alive", "cover": "manah-kalah.jpg" },
+    { "title": "You're Never Over", "cover": "manah-kalah.jpg" }
+  ],
 
-By moving from silence and misunderstanding to openness and emotional clarity, Manah Kalah builds an empathy bridge between generations — showing that the divide is not about villainy or rebellion, but about perspective, fear, and love expressed imperfectly.",
-    "tracks": [
-      "Vinyl",
-      "Manah",
-      "Contemporaries",
-      "Mortal",
-      "Mother-Son",
-      "Kalah",
-      "Stars / Colours",
-      "Take Me To Your Garden",
-      "Generational Wealth",
-      "Transform Ⅰ",
-      "Mirror",
-      "I Promise, I'm Alive",
-      "You're Never Over"
-    ]
-  }
-]
+  "albums": [
+    {
+      "id": "manah-kalah",
+      "title": "Manah Kalah",
+      "cover": "manah-kalah.jpg",
+      "albumBio": "Manah Kalah is a jazz-rap driven, deeply personal album centered around family, generational tension, and emotional growth. The narrative follows a child’s evolving perception of family — beginning with internalized pressure and quiet resentment, and gradually shifting toward empathy and appreciation. The emotional turning point arrives at \"I Promise, I'm Alive,\" where silence gives way to vulnerability.\n\nThe project highlights the subtle divide present in many Indian households: children often hesitate to share their struggles, while parents silently worry without expressing it. Rather than portraying dramatic rebellion or oppression, the album explores invisible expectations and unspoken fears. Through shifting tone, perspective, and instrumentation, the record builds an empathy bridge between generations — showing that misunderstanding often stems not from malice, but from love expressed imperfectly.",
+      "tracks": [
+        "Vinyl",
+        "Manah",
+        "Contemporaries",
+        "Mortal",
+        "Mother-Son",
+        "Kalah",
+        "Stars / Colours",
+        "Take Me To Your Garden",
+        "Generational Wealth",
+        "Transform Ⅰ",
+        "Mirror",
+        "I Promise, I'm Alive",
+        "You're Never Over"
+      ]
+    }
+  ],
+
+  "eps": [],
+
+  "blog": [
+    {
+      "id": "making-of-manah-kalah",
+      "title": "The Making of Manah Kalah",
+      "excerpt": "A deeper look into the emotional arc and themes behind the album.",
+      "content": "Manah Kalah was created as a cohesive narrative exploring identity, pressure, silence, and generational empathy. Each track builds on the album’s arc — moving from introspection and internal conflict toward openness and reconciliation. The project blends jazz-rap textures with reflective lyricism to communicate the complexity of family dynamics in Indian households and beyond."
+    }
+  ]
+}
