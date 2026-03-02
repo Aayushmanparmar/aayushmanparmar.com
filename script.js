@@ -1,0 +1,199 @@
+const navLinks = document.querySelectorAll('.nav-link');
+const views = document.querySelectorAll('.view');
+
+
+const bioText = document.getElementById('bio-text');
+const bioToggle = document.getElementById('bio-toggle');
+
+bioToggle?.addEventListener('click', () => {
+  const isCollapsed = bioText?.classList.toggle('collapsed');
+  bioToggle.textContent = isCollapsed ? 'Read more' : 'Show less';
+});
+
+const switchView = (viewId) => {
+  navLinks.forEach((link) => {
+    link.classList.toggle('active', link.dataset.view === viewId);
+  });
+  views.forEach((view) => view.classList.toggle('active', view.id === viewId));
+};
+
+navLinks.forEach((button) => {
+  button.addEventListener('click', () => switchView(button.dataset.view));
+});
+
+document.querySelectorAll('[data-album-target="album"]').forEach((el) => {
+  el.addEventListener('click', () => switchView('album'));
+});
+
+document.querySelectorAll('.song-jump').forEach((button) => {
+  button.addEventListener('click', () => {
+    switchView('album');
+    const trackName = button.dataset.track;
+    const track = [...document.querySelectorAll('#tracklist li')].find(
+      (li) => li.querySelector('span')?.textContent === trackName,
+    );
+    if (track) selectTrack(track);
+  });
+});
+
+const player = document.getElementById('album-player');
+const playerStatus = document.getElementById('player-status');
+const playSelected = document.getElementById('play-selected');
+const tracks = [...document.querySelectorAll('#tracklist li')];
+let selectedTrack = null;
+
+function selectTrack(trackEl) {
+  tracks.forEach((t) => t.classList.remove('active-track'));
+  selectedTrack = trackEl;
+  selectedTrack.classList.add('active-track');
+  playerStatus.textContent = `Selected: ${selectedTrack.querySelector('span').textContent}`;
+}
+
+tracks.forEach((track) => track.addEventListener('click', () => selectTrack(track)));
+
+playSelected?.addEventListener('click', async () => {
+  if (!selectedTrack) {
+    playerStatus.textContent = 'Select a track first.';
+    return;
+  }
+
+  const file = selectedTrack.dataset.file;
+  player.src = file;
+
+  try {
+    await player.play();
+    playerStatus.textContent = `Now playing: ${selectedTrack.querySelector('span').textContent}`;
+  } catch {
+    playerStatus.textContent = `Could not play ${file}. Add the matching file in /audio.`;
+  }
+});
+
+const STORAGE_KEY = 'aayushman-mini-dsp-blog';
+const postsContainer = document.getElementById('posts');
+const postForm = document.getElementById('post-form');
+const postTitle = document.getElementById('post-title');
+const postContent = document.getElementById('post-content');
+const commentTemplate = document.getElementById('comment-template');
+
+const loadPosts = () => {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch {
+    return [];
+  }
+};
+
+const savePosts = (posts) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+};
+
+let posts = loadPosts();
+const uid = () => Math.random().toString(36).slice(2, 10);
+
+const render = () => {
+  postsContainer.innerHTML = '';
+
+  if (!posts.length) {
+    postsContainer.innerHTML = '<article class="panel">No posts yet. Publish your first blog.</article>';
+    return;
+  }
+
+  posts.slice().reverse().forEach((post) => {
+    const card = document.createElement('article');
+    card.className = 'post-card';
+
+    card.innerHTML = `
+      <h3>${post.title}</h3>
+      <p>${post.content.replace(/\n/g, '<br>')}</p>
+      <div class="post-actions">
+        <button type="button" class="like-post">❤️ <span>${post.likes}</span></button>
+        <button type="button" class="delete-post">Delete</button>
+      </div>
+      <form class="comment-form">
+        <input type="text" required maxlength="500" placeholder="Write a comment..." />
+        <button type="submit">Comment</button>
+      </form>
+      <div class="comments"></div>
+    `;
+
+    card.querySelector('.like-post').addEventListener('click', () => {
+      post.likes += 1;
+      savePosts(posts);
+      render();
+    });
+
+    card.querySelector('.delete-post').addEventListener('click', () => {
+      posts = posts.filter((item) => item.id !== post.id);
+      savePosts(posts);
+      render();
+    });
+
+    const commentForm = card.querySelector('.comment-form');
+    commentForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const input = commentForm.querySelector('input');
+      const text = input.value.trim();
+      if (!text) return;
+      post.comments.push({ id: uid(), text, likes: 0, replies: [] });
+      input.value = '';
+      savePosts(posts);
+      render();
+    });
+
+    const commentsEl = card.querySelector('.comments');
+    post.comments.forEach((comment) => {
+      const commentNode = commentTemplate.content.firstElementChild.cloneNode(true);
+      commentNode.querySelector('.comment-text').textContent = comment.text;
+
+      const likeCommentBtn = commentNode.querySelector('.like-comment');
+      likeCommentBtn.querySelector('span').textContent = String(comment.likes);
+      likeCommentBtn.addEventListener('click', () => {
+        comment.likes += 1;
+        savePosts(posts);
+        render();
+      });
+
+      const replyForm = commentNode.querySelector('.reply-form');
+      commentNode.querySelector('.reply-toggle').addEventListener('click', () => {
+        replyForm.classList.toggle('hidden');
+      });
+
+      replyForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const input = replyForm.querySelector('.reply-input');
+        const replyText = input.value.trim();
+        if (!replyText) return;
+        comment.replies.push(replyText);
+        input.value = '';
+        savePosts(posts);
+        render();
+      });
+
+      const repliesEl = commentNode.querySelector('.replies');
+      comment.replies.forEach((reply) => {
+        const replyEl = document.createElement('div');
+        replyEl.className = 'reply';
+        replyEl.textContent = `↳ ${reply}`;
+        repliesEl.appendChild(replyEl);
+      });
+
+      commentsEl.appendChild(commentNode);
+    });
+
+    postsContainer.appendChild(card);
+  });
+};
+
+postForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const title = postTitle.value.trim();
+  const content = postContent.value.trim();
+  if (!title || !content) return;
+
+  posts.push({ id: uid(), title, content, likes: 0, comments: [] });
+  postForm.reset();
+  savePosts(posts);
+  render();
+});
+
+render();
