@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aayushman Parmar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <h1>Aayushman Parmar</h1>
+        </div>
+
+        <nav class="nav-links" aria-label="Primary">
+          <button class="nav-link active" data-view="artist">Artist Home</button>
+                    <button class="nav-link" data-view="blog">Blog</button>
+          <button class="nav-link" data-view="about">About</button>
+        </nav>
+
+        <div class="now-playing">
+          <p class="muted">Featured Release</p>
+          <h3>Manah Kalah</h3>
+          <p class="muted">13 tracks • 1 hr 30 min</p>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="view active" id="artist">
+          <header class="hero artist-hero">
+            <div class="profile-photo" aria-label="Artist profile photo placeholder">AP</div>
+            <div>
+              <p class="eyebrow">Artist Page</p>
+              <h2>Aayushman Parmar</h2>
+              <div class="chip-row">
+                <span class="chip">Hip-Hop / Alternative</span>
+                <span class="chip">Concept Storytelling</span>
+                <span class="chip">Family Narrative</span>
+              </div>
+            </div>
+          </header>
+
+          <section class="grid-2">
+            <article class="panel">
+              <h3>Bio</h3>
+              <p id="bio-text" class="bio-text collapsed">
+                Aayushman Parmar is a young, independent artist who started his music career from sole inspiration. From writing horrorcore tracks to absolute lyrical blasts of freestyles, he shapes his career with his first ever studio album, 'Manah Kalah', diving into concepts and stories of his life. From the beginning, he has wanted to make music thaat resonates with the public, and not just for a vibe. His freestyles include 'So Be It' freestyle, 'Bodies' freestyle, 'cLOUDs' frreestyle and more, soon to be added to this website. He holds exclusive rights to his music - all self produced. His rapping inspirations include Eminem, Nas, J. Cole, Kendrick Lamar, The Notorious B.I.G, JID, MF DOOM, Denzel Curry, Wu-Tang Clan, Mobb Deep, while drawing production inspirations from Tyler, The Creator, Pharell Williams, No ID, Thundercat, and J. Cole. Being a student of the genre, he has taken inspirations from many, and yet created his own sound with Jazz-Rap, Rock-Rap, Boom-Bap and Alternative.
+              </p>
+              <button type="button" id="bio-toggle" class="bio-toggle">Read more</button>
+            </article>
+            <article class="panel">
+              <h3>Top Songs</h3>
+              <ol class="top-songs with-covers">
+                <li><button class="song-jump" data-track="I Promise, I'm Alive"><span class="mini-cover">MK</span><span>I Promise, I'm Alive</span></button></li>
+                <li><button class="song-jump" data-track="Generational Wealth"><span class="mini-cover">MK</span><span>Generational Wealth</span></button></li>
+                <li><button class="song-jump" data-track="You're Never Over"><span class="mini-cover">MK</span><span>You're Never Over</span></button></li>
+                <li><button class="song-jump" data-track="Mother-Son"><span class="mini-cover">MK</span><span>Mother-Son</span></button></li>
+              </ol>
+            </article>
+          </section>
+
+          <section class="catalogue-block">
+            <h2>Catalogue</h2>
+            <div class="album-cards">
+              <article class="album-card" data-album-target="album">
+                <div class="album-thumb">MK</div>
+                <div>
+                  <p class="muted">Album • 2026</p>
+                  <h3>Manah Kalah</h3>
+                  <p>13 songs • 1 hr 30 min</p>
+                </div>
+                <button class="open-album" data-album-target="album">Open Album</button>
+              </article>
+              <article class="album-card muted-card">
+                <div class="album-thumb">EP</div>
+                <div>
+                  <p class="muted">EP</p>
+                  <h3>Coming Soon</h3>
+                  <p>Reserved for upcoming projects.</p>
+                </div>
+              </article>
+              <article class="album-card muted-card">
+                <div class="album-thumb">S</div>
+                <div>
+                  <p class="muted">Singles</p>
+                  <h3>Coming Soon</h3>
+                  <p>Reserved for single releases.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="album">
+          <h2>Manah Kalah</h2>
+          <div class="album-layout">
+            <div class="album-art" aria-label="Album art">MK</div>
+            <div class="panel tracklist">
+              <div class="tracklist-header">
+                <div>
+                  <p class="muted">Aayushman Parmar</p>
+                  <h3>Manah Kalah</h3>
+                </div>
+                <p class="credit">WRITTEN,SEQUENCED AND PRODUCED BY AAYUSHMAN PARMAR</p>
+              </div>
+              <ol id="tracklist">
+                <li data-file="audio/01-vinyl.wav"><span>Vinyl</span></li>
+                <li data-file="audio/02-manah.wav"><span>Manah</span></li>
+                <li data-file="audio/03-contemporaries.wav"><span>Contemporaries</span></li>
+                <li data-file="audio/04-mortal.wav"><span>Mortal</span></li>
+                <li data-file="audio/05-mother-son.wav"><span>Mother-Son</span></li>
+                <li data-file="audio/06-kalah.wav"><span>Kalah</span></li>
+                <li data-file="audio/07-stars-colours.wav"><span>Stars / Colours</span></li>
+                <li data-file="audio/08-take-me-to-your-garden.wav"><span>Take Me To Your Garden</span></li>
+                <li data-file="audio/09-generational-wealth.wav"><span>Generational Wealth</span></li>
+                <li data-file="audio/10-transform-1.wav"><span>Transform Ⅰ</span></li>
+                <li data-file="audio/11-mirror.wav"><span>Mirror</span></li>
+                <li data-file="audio/12-i-promise-im-alive.wav"><span>I Promise, I'm Alive</span></li>
+                <li data-file="audio/13-youre-never-over.wav"><span>You're Never Over</span></li>
+              </ol>
+              <div class="player-bar">
+                <button id="play-selected" type="button">Play Selected Track</button>
+                <p id="player-status" class="muted">Select a track, then press play.</p>
+                <audio id="album-player" controls preload="none"></audio>
+              </div>
+              <p class="runtime">13 songs • 1 hr 30 min</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="blog">
+          <h2>Community Blog</h2>
+          <article class="panel">
+            <h3>Create Post</h3>
+            <form id="post-form">
+              <label>Title <input type="text" id="post-title" required maxlength="100" /></label>
+              <label>Content <textarea id="post-content" rows="5" required maxlength="2000"></textarea></label>
+              <button type="submit">Publish</button>
+            </form>
+          </article>
+          <div id="posts" class="posts"></div>
+        </section>
+
+        <section class="view" id="about">
+          <h2>About This Mini DSP</h2>
+          <article class="panel">
+            <p>This site is designed as a personal mini-DSP with artist-first layout, catalogue, album experience, and interactive blog.</p>
+            <p>Built to be deployed on GitHub Pages with no backend dependencies.</p>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <template id="comment-template">
+      <div class="comment-card">
+        <p class="comment-text"></p>
+        <div class="comment-actions">
+          <button class="like-comment" type="button">❤️ <span>0</span></button>
+          <button class="reply-toggle" type="button">Reply</button>
+        </div>
+        <form class="reply-form hidden">
+          <input type="text" class="reply-input" placeholder="Write a reply..." required />
+          <button type="submit">Send</button>
+        </form>
+        <div class="replies"></div>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
