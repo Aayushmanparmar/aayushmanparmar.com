@@ -51,17 +51,21 @@
             <article class="panel">
               <h3>Bio</h3>
               <p id="bio-text" class="bio-text collapsed">
-                Aayushman Parmar is a young, independent artist who started his music career from sole inspiration. From writing horrorcore tracks to absolute lyrical blasts of freestyles, he shapes his career with his first ever studio album, 'Manah Kalah', diving into concepts and stories of his life. From the beginning, he has wanted to make music thaat resonates with the public, and not just for a vibe. His freestyles include 'So Be It' freestyle, 'Bodies' freestyle, 'cLOUDs' frreestyle and more, soon to be added to this website. He holds exclusive rights to his music - all self produced. His rapping inspirations include Eminem, Nas, J. Cole, Kendrick Lamar, The Notorious B.I.G, JID, MF DOOM, Denzel Curry, Wu-Tang Clan, Mobb Deep, while drawing production inspirations from Tyler, The Creator, Pharell Williams, No ID, Thundercat, and J. Cole. Being a student of the genre, he has taken inspirations from many, and yet created his own sound with Jazz-Rap, Rock-Rap, Boom-Bap and Alternative.
+                Aayushman Parmar is a young, independent artist who launched his music career driven by pure inspiration. From writing horrorcore tracks to delivering lyrical blasts of freestyles, he is currently shaping his career with his debut studio album, ‘Manah Kalah’, a project that dives deep into the concepts and stories of his life.<br /><br />
+                Since the beginning, Aayushman’s goal has been to create music that resonates with the public on a meaningful level, moving beyond just "the vibe." Developing an interest in lyricism long before production, he writes with the intent for his words to hit the reader and for true Hip-Hop to be felt and enjoyed. While his production roots are in jazz rap and soul-sample styles, he has further delved into diverse soundscapes including luxury, soul, underground, and boom-bap.<br /><br />
+                His freestyle catalog includes ‘So Be It’, ‘Bodies’, and ‘cLOUDs’, all of which will soon be available on this website. Aayushman holds exclusive rights to his music, as every track is entirely self-produced.<br /><br />
+                His rapping inspirations include Eminem, Nas, J. Cole, Kendrick Lamar, The Notorious B.I.G., JID, MF DOOM, Denzel Curry, Wu-Tang Clan, and Mobb Deep. His production style is influenced by Tyler, The Creator, Pharrell Williams, No I.D., Thundercat, and J. Cole.<br /><br />
+                A staunch advocate for authenticity, Aayushman is a vocal opponent of AI-generated music. He actively spreads the message of human creativity, urging listeners not to let rising technologies become the primary medium of consumption. As a true student of the genre, he draws from the greats while carving out his own signature sound through a blend of Jazz-Rap, Rock-Rap, Boom-Bap, and Alternative Hip-Hop
               </p>
               <button type="button" id="bio-toggle" class="bio-toggle">Read more</button>
             </article>
             <article class="panel">
               <h3>Top Songs</h3>
               <ol class="top-songs with-covers">
-                <li><button class="song-jump" data-track="I Promise, I'm Alive"><span class="mini-cover">MK</span><span>I Promise, I'm Alive</span></button></li>
-                <li><button class="song-jump" data-track="Generational Wealth"><span class="mini-cover">MK</span><span>Generational Wealth</span></button></li>
-                <li><button class="song-jump" data-track="You're Never Over"><span class="mini-cover">MK</span><span>You're Never Over</span></button></li>
-                <li><button class="song-jump" data-track="Mother-Son"><span class="mini-cover">MK</span><span>Mother-Son</span></button></li>
+                <li><button class="song-jump" data-track="I Promise, I'm Alive"><span class="mini-cover"><img src="assets/manah-kalah-cover.jpg" alt="Manah Kalah cover" /></span><span>I Promise, I'm Alive</span></button></li>
+                <li><button class="song-jump" data-track="Generational Wealth"><span class="mini-cover"><img src="assets/manah-kalah-cover.jpg" alt="Manah Kalah cover" /></span><span>Generational Wealth</span></button></li>
+                <li><button class="song-jump" data-track="You're Never Over"><span class="mini-cover"><img src="assets/manah-kalah-cover.jpg" alt="Manah Kalah cover" /></span><span>You're Never Over</span></button></li>
+                <li><button class="song-jump" data-track="Mother-Son"><span class="mini-cover"><img src="assets/manah-kalah-cover.jpg" alt="Manah Kalah cover" /></span><span>Mother-Son</span></button></li>
               </ol>
             </article>
           </section>
@@ -70,7 +74,7 @@
             <h2>Catalogue</h2>
             <div class="album-cards">
               <article class="album-card" data-album-target="album">
-                <div class="album-thumb">MK</div>
+                <div class="album-thumb"><img src="assets/manah-kalah-cover.jpg" alt="Manah Kalah cover" /></div>
                 <div>
                   <p class="muted">Album • 2026</p>
                   <h3>Manah Kalah</h3>
@@ -101,7 +105,7 @@
         <section class="view" id="album">
           <h2>Manah Kalah</h2>
           <div class="album-layout">
-            <div class="album-art" aria-label="Album art">MK</div>
+            <div class="album-art" aria-label="Album art"><img src="assets/manah-kalah-cover.jpg" alt="Manah Kalah album cover" /></div>
             <div class="panel tracklist">
               <div class="tracklist-header">
                 <div>
@@ -125,10 +129,16 @@
                 <li data-file="audio/12-i-promise-im-alive.wav"><span>I Promise, I'm Alive</span></li>
                 <li data-file="audio/13-youre-never-over.wav"><span>You're Never Over</span></li>
               </ol>
-              <div class="player-bar">
-                <button id="play-selected" type="button">Play Selected Track</button>
-                <p id="player-status" class="muted">Select a track, then press play.</p>
-                <audio id="album-player" controls preload="none"></audio>
+              <div class="player-bar modern-player">
+                <p id="player-status" class="muted">Click any track name to play instantly.</p>
+                <div class="player-controls" aria-label="Player controls">
+                  <button type="button" id="play-pause-btn" class="icon-btn" aria-label="Play or pause">⏯</button>
+                  <button type="button" id="shuffle-btn" class="icon-btn" aria-label="Shuffle">🔀</button>
+                  <button type="button" id="loop-btn" class="icon-btn" aria-label="Loop">🔁</button>
+                  <label class="volume-wrap" for="volume-slider">Volume</label>
+                  <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume" />
+                </div>
+                <audio id="album-player" preload="none" controlsList="nodownload"></audio>
               </div>
               <p class="runtime">13 songs • 1 hr 30 min</p>
             </div>
