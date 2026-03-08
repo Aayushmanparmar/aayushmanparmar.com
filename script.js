@@ -38,35 +38,107 @@ document.querySelectorAll('.song-jump').forEach((button) => {
 
 const player = document.getElementById('album-player');
 const playerStatus = document.getElementById('player-status');
-const playSelected = document.getElementById('play-selected');
+const playPauseBtn = document.getElementById('play-pause-btn');
+const shuffleBtn = document.getElementById('shuffle-btn');
+const loopBtn = document.getElementById('loop-btn');
+const volumeSlider = document.getElementById('volume-slider');
 const tracks = [...document.querySelectorAll('#tracklist li')];
 let selectedTrack = null;
+let shuffleOn = false;
 
-function selectTrack(trackEl) {
+const setPlayPauseLabel = () => {
+  if (!playPauseBtn) return;
+  playPauseBtn.textContent = player.paused ? '▶' : '⏸';
+};
+
+async function selectTrack(trackEl) {
   tracks.forEach((t) => t.classList.remove('active-track'));
   selectedTrack = trackEl;
   selectedTrack.classList.add('active-track');
-  playerStatus.textContent = `Selected: ${selectedTrack.querySelector('span').textContent}`;
-}
-
-tracks.forEach((track) => track.addEventListener('click', () => selectTrack(track)));
-
-playSelected?.addEventListener('click', async () => {
-  if (!selectedTrack) {
-    playerStatus.textContent = 'Select a track first.';
-    return;
-  }
 
   const file = selectedTrack.dataset.file;
   player.src = file;
 
   try {
     await player.play();
+    setPlayPauseLabel();
     playerStatus.textContent = `Now playing: ${selectedTrack.querySelector('span').textContent}`;
   } catch {
+    setPlayPauseLabel();
     playerStatus.textContent = `Could not play ${file}. Add the matching file in /audio.`;
   }
+}
+
+const playNextTrack = () => {
+  if (!tracks.length) return;
+  const currentIndex = selectedTrack ? tracks.indexOf(selectedTrack) : -1;
+
+  let nextIndex = 0;
+  if (shuffleOn && tracks.length > 1) {
+    do {
+      nextIndex = Math.floor(Math.random() * tracks.length);
+    } while (nextIndex === currentIndex);
+  } else {
+    nextIndex = currentIndex >= 0 ? (currentIndex + 1) % tracks.length : 0;
+  }
+
+  selectTrack(tracks[nextIndex]);
+};
+
+tracks.forEach((track) => {
+  track.addEventListener('click', () => {
+    selectTrack(track);
+  });
 });
+
+playPauseBtn?.addEventListener('click', async () => {
+  if (!selectedTrack && tracks.length) {
+    await selectTrack(tracks[0]);
+    return;
+  }
+
+  if (player.paused) {
+    try {
+      await player.play();
+      if (selectedTrack) {
+        playerStatus.textContent = `Now playing: ${selectedTrack.querySelector('span').textContent}`;
+      }
+    } catch {
+      playerStatus.textContent = 'Unable to start playback.';
+    }
+  } else {
+    player.pause();
+    if (selectedTrack) {
+      playerStatus.textContent = `Paused: ${selectedTrack.querySelector('span').textContent}`;
+    }
+  }
+
+  setPlayPauseLabel();
+});
+
+shuffleBtn?.addEventListener('click', () => {
+  shuffleOn = !shuffleOn;
+  shuffleBtn.classList.toggle('active', shuffleOn);
+});
+
+loopBtn?.addEventListener('click', () => {
+  player.loop = !player.loop;
+  loopBtn.classList.toggle('active', player.loop);
+});
+
+volumeSlider?.addEventListener('input', () => {
+  player.volume = Number(volumeSlider.value);
+});
+
+player.addEventListener('play', setPlayPauseLabel);
+player.addEventListener('pause', setPlayPauseLabel);
+player.addEventListener('ended', () => {
+  if (!player.loop) {
+    playNextTrack();
+  }
+});
+
+setPlayPauseLabel();
 
 const STORAGE_KEY = 'aayushman-mini-dsp-blog';
 const postsContainer = document.getElementById('posts');
