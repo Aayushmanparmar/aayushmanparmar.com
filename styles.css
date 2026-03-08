@@ -23,7 +23,8 @@ body { margin: 0; background: radial-gradient(circle at top left, #191f31, var(-
 .view.active { display: block; }
 .hero { display: grid; gap: 1rem; }
 .artist-hero { grid-template-columns: 150px 1fr; align-items: center; }
-.profile-photo { width: 150px; height: 150px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; font-weight: 800; font-size: 2rem; background: linear-gradient(135deg, #2f3e64, #191d27); }
+.profile-photo { width: 150px; height: 150px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; overflow: hidden; background: linear-gradient(135deg, #2f3e64, #191d27); }
+.profile-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hero h2, h2 { font-size: clamp(1.5rem, 2.2vw, 2.2rem); margin: 0.25rem 0; }
 .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; }
 .panel { border: 1px solid var(--border); border-radius: 12px; padding: 1rem; background: linear-gradient(145deg, var(--panel), #171b25); }
